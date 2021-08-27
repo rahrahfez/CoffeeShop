@@ -1,13 +1,45 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+import Home from './screens/home';
+
+const Tab = createBottomTabNavigator();
+
+function HomeScreen() {
+  return (
+    <View style={styles.container}>
+      <Home />
+    </View>
+  );
+}
+
+function MenuScreen() {
+  return (
+    <View style={styles.container}>
+      <Text>Menu!</Text>
+    </View>
+  );
+}
+
+function ShoppingCartScreen() {
+  return (
+    <View style={styles.container}>
+      <Text>Shopping Cart!</Text>
+    </View>
+  );
+}
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen name='Home' component={HomeScreen} />
+        <Tab.Screen name='Menu' component={MenuScreen} />
+        <Tab.Screen name="Cart" component={ShoppingCartScreen} />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
 
