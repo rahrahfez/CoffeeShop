@@ -13,15 +13,14 @@ const styles = StyleSheet.create({
   background_image: {
     resizeMode: 'cover',
     flex: 1,
-    justifyContent: 'center',
     height: '100%',
     width: '100%',
-    flexDirection: 'column',
+    alignItems: 'center',
   },
   text: {
     color: 'white',
     fontSize: 42,
     fontWeight: 'bold',
-    textAlign: 'center',
+    marginTop: 24,
   },
 })
