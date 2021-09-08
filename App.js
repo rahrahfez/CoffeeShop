@@ -6,6 +6,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 
 import Home from './screens/home';
 import MenuScreen from './screens/menu';
+import ShoppingCart from './screens/shoppingCart';
 
 const Tab = createBottomTabNavigator();
 
@@ -20,7 +21,7 @@ function HomeScreen() {
 function ShoppingCartScreen() {
   return (
     <View style={styles.container}>
-      <Text>Shopping Cart!</Text>
+      <ShoppingCart />
     </View>
   );
 }
