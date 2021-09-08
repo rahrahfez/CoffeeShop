@@ -51,7 +51,7 @@ export default function App() {
           }
         })}
       >
-        <Tab.Screen name='Home' component={HomeScreen} />
+        <Tab.Screen name='Home' component={HomeScreen} options={{ headerShown: false }}/>
         <Tab.Screen name='Menu' component={MenuScreen} />
         <Tab.Screen name="Cart" component={ShoppingCartScreen} options={{ tabBarBadge: 1 }} />
       </Tab.Navigator>
