@@ -1,50 +1,57 @@
 import React from 'react';
-import { Image, View, Text, Button, Alert, StyleSheet, ScrollView, Pressable } from 'react-native';
+import { Image, View, Text, StyleSheet, ScrollView, Pressable, FlatList, TouchableHighlight } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { globalStyles } from '../shared/globalStyles';
 import ItemDescriptionScreen from './itemDescription';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
-// const drinksData = 
+import { dalgona } from '../shared/menuItems';
 
 function DrinksScreen({ navigation }) {
   return (
     <ScrollView>
-      <Text style={styles.cardHeader}>Dalgona</Text>
-      <ScrollView horizontal={true} style={styles.contentContainer}>
-        <Pressable style={styles.card} onPress={() => navigation.navigate('ItemDescription')}>
-          <Image source={require('../assets/coffee(edited).png')} style={styles.drinkImage}/> 
-          <Text style={styles.drinkLabel}>Coffee</Text>
+      <View style={{flexDirection: 'row'}}>
+        <Text style={styles.cardHeader}>Dalgona</Text>
+      </View>
+      <FlatList 
+        style={styles.contentContainer}
+        data={dalgona}
+        horizontal={true}
+        renderItem={({item}) => (
+          <Pressable 
+            key={item.id}
+            style={styles.card} 
+            onPress={() => navigation.navigate('ItemDescription')}>
+          <Image source={item.img_thumbnail} style={styles.drinkImage}/> 
+          <Text style={styles.drinkLabel}>{item.flavor}</Text>
         </Pressable>
-        <View style={styles.card}>
-          <Image source={require('../assets/coffee(edited).png')} style={styles.drinkImage}/> 
-          <Text style={styles.drinkLabel}>Strawberry</Text>
-        </View>
-        <View style={styles.card}>
-          <Image source={require('../assets/coffee(edited).png')} style={styles.drinkImage}/> 
-          <Text style={styles.drinkLabel}>Chocolate</Text>
-        </View>
-        <View style={styles.card}>
-          <Image source={require('../assets/coffee(edited).png')} style={styles.drinkImage}/> 
-          <Text style={styles.drinkLabel}>Thai Tea</Text>
-        </View>
-      </ScrollView>
-      <Text style={styles.cardHeader}>Hot Espresso</Text>
-      <ScrollView horizontal={true} style={styles.contentContainer}>
-        <View style={styles.card}>
-          <Image source={require('../assets/coffee(edited).png')} style={styles.drinkImage}/> 
-          <Text style={styles.drinkLabel}>Espresso</Text>
-        </View>
-        <View style={styles.card}>
-          <Image source={require('../assets/coffee(edited).png')} style={styles.drinkImage}/> 
-          <Text style={styles.drinkLabel}>Macchiato</Text>
-        </View>
-        <View style={styles.card}>
-          <Image source={require('../assets/coffee(edited).png')} style={styles.drinkImage}/> 
-          <Text style={styles.drinkLabel}>Cappuccino</Text>
-        </View>
-      </ScrollView>
+      )}/>
+      {/* <Text style={styles.cardHeader}>Hot Espresso</Text>
+      <FlatList 
+        horizontal={true}
+        data={Items}
+        renderItem={({ item, index }) => (
+          <Pressable 
+            key={item[index]} 
+            style={styles.card} 
+            onPress={() => navigation.navigate('ItemDescription')}>
+          <Image source={item.img_thumbnail} style={styles.drinkImage}/> 
+          <Text style={styles.drinkLabel}>{item.flavor}</Text>
+        </Pressable>
+      )}/>
+      <Text style={styles.cardHeader}>Cold Drinks</Text>
+      <FlatList 
+        horizontal={true}
+        data={Items}
+        renderItem={({ item, index }) => (
+          <Pressable 
+            key={item[index]} 
+            style={styles.card} 
+            onPress={() => navigation.navigate('ItemDescription')}>
+          <Image source={item.img_thumbnail} style={styles.drinkImage}/> 
+          <Text style={styles.drinkLabel}>{item.flavor}</Text>
+        </Pressable>
+      )}/> */}
     </ScrollView>
   );
 }
@@ -72,7 +79,7 @@ function MenuScreenStack() {
 export default function MenuScreen() {
   return (
     <Tab.Navigator>
-      <Tab.Screen name='Drinks' component={MenuScreenStack} />
+      <Tab.Screen name='Coffee' component={MenuScreenStack} />
       <Tab.Screen name='Food' component={FoodScreen} />
     </Tab.Navigator>
     );
@@ -87,18 +94,18 @@ const styles = StyleSheet.create({
   },
   cardHeader: {
     fontWeight: '600',
-    fontSize: 32,
+    fontSize: 24,
     padding: 8,
     marginLeft: 12,
   },
   drinkLabel: {
-    fontSize: 24,
+    fontSize: 18,
     padding: 2,
     fontWeight: '200',
   },
   drinkImage: {
-    width: 100,
-    height: 100,
+    width: 120,
+    height: 120,
     marginHorizontal: 10,
   },
   contentContainer: {
