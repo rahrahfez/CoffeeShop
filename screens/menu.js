@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { globalStyles } from '../shared/globalStyles';
 import ItemDescriptionScreen from './itemDescription';
 import { dalgona } from '../shared/menuItems';
+import { baggedLooseTea } from '../shared/tea';
 
 function DrinksScreen({ navigation }) {
   return (
@@ -26,32 +27,22 @@ function DrinksScreen({ navigation }) {
           <Text style={styles.drinkLabel}>{item.flavor}</Text>
         </Pressable>
       )}/>
-      {/* <Text style={styles.cardHeader}>Hot Espresso</Text>
+      <View style={{flexDirection: 'row'}}>
+      <Text style={styles.cardHeader}>Bagged Loose Tea</Text>
+      </View>
       <FlatList 
+        style={styles.contentContainer}
+        data={baggedLooseTea}
         horizontal={true}
-        data={Items}
-        renderItem={({ item, index }) => (
+        renderItem={({item}) => (
           <Pressable 
-            key={item[index]} 
+            key={item.id}
             style={styles.card} 
             onPress={() => navigation.navigate('ItemDescription')}>
           <Image source={item.img_thumbnail} style={styles.drinkImage}/> 
           <Text style={styles.drinkLabel}>{item.flavor}</Text>
         </Pressable>
       )}/>
-      <Text style={styles.cardHeader}>Cold Drinks</Text>
-      <FlatList 
-        horizontal={true}
-        data={Items}
-        renderItem={({ item, index }) => (
-          <Pressable 
-            key={item[index]} 
-            style={styles.card} 
-            onPress={() => navigation.navigate('ItemDescription')}>
-          <Image source={item.img_thumbnail} style={styles.drinkImage}/> 
-          <Text style={styles.drinkLabel}>{item.flavor}</Text>
-        </Pressable>
-      )}/> */}
     </ScrollView>
   );
 }
