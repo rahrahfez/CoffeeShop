@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Image, View, Text, StyleSheet, ScrollView, Pressable, FlatList, TouchableHighlight } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -8,7 +8,14 @@ import ItemDescriptionScreen from './itemDescription';
 import { dalgona } from '../shared/menuItems';
 import { baggedLooseTea } from '../shared/tea';
 
+function OpenModal() {
+  setModalVisable(!modalVisable);
+}
+
+
 function DrinksScreen({ navigation }) {
+  const [modalVisable, setModalVisable] = useState(false);
+
   return (
     <ScrollView>
       <View style={{flexDirection: 'row'}}>
@@ -22,7 +29,7 @@ function DrinksScreen({ navigation }) {
           <Pressable 
             key={item.id}
             style={styles.card} 
-            onPress={() => navigation.navigate('ItemDescription')}>
+            onPress={() => OpenModal()}>
           <Image source={item.img_thumbnail} style={styles.drinkImage}/> 
           <Text style={styles.drinkLabel}>{item.flavor}</Text>
         </Pressable>
@@ -38,7 +45,7 @@ function DrinksScreen({ navigation }) {
           <Pressable 
             key={item.id}
             style={styles.card} 
-            onPress={() => navigation.navigate('ItemDescription')}>
+            onPress={() => OpenModal()}>
           <Image source={item.img_thumbnail} style={styles.drinkImage}/> 
           <Text style={styles.drinkLabel}>{item.flavor}</Text>
         </Pressable>

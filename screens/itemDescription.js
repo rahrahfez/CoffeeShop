@@ -1,12 +1,28 @@
 import React, { useState } from 'react';
-import { View, Text, Modal } from 'react-native';
+import { View, Text, Modal, Pressable } from 'react-native';
+
+import { globalStyles } from '../shared/globalStyles';
 
 export default function ItemDescriptionScreen() {
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
-    <View>
-      <Text>item description</Text>
+    <View style={globalStyles.container}>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <Text>Item Description</Text>
+        <Pressable
+          onPress={() => setModalVisible(!modalVisible)}
+        >
+          <Text>Hide Modal</Text>
+        </Pressable>
+      </Modal>
     </View>
   );
 }
