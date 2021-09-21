@@ -1,17 +1,10 @@
 import React, { useState } from 'react';
-import { Image, View, Text, StyleSheet, ScrollView, Pressable, FlatList, TouchableHighlight } from 'react-native';
+import { Image, View, Text, StyleSheet, ScrollView, Pressable, FlatList, Modal } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { globalStyles } from '../shared/globalStyles';
 import ItemDescriptionScreen from './itemDescription';
 import { dalgona } from '../shared/menuItems';
-import { baggedLooseTea } from '../shared/tea';
-
-function OpenModal() {
-  setModalVisable(!modalVisable);
-}
-
 
 function DrinksScreen({ navigation }) {
   const [modalVisable, setModalVisable] = useState(false);
@@ -29,25 +22,10 @@ function DrinksScreen({ navigation }) {
           <Pressable 
             key={item.id}
             style={styles.card} 
-            onPress={() => OpenModal()}>
+            onPress={() => setModalVisable(true)}>
           <Image source={item.img_thumbnail} style={styles.drinkImage}/> 
           <Text style={styles.drinkLabel}>{item.flavor}</Text>
-        </Pressable>
-      )}/>
-      <View style={{flexDirection: 'row'}}>
-      <Text style={styles.cardHeader}>Bagged Loose Tea</Text>
-      </View>
-      <FlatList 
-        style={styles.contentContainer}
-        data={baggedLooseTea}
-        horizontal={true}
-        renderItem={({item}) => (
-          <Pressable 
-            key={item.id}
-            style={styles.card} 
-            onPress={() => OpenModal()}>
-          <Image source={item.img_thumbnail} style={styles.drinkImage}/> 
-          <Text style={styles.drinkLabel}>{item.flavor}</Text>
+            <ItemDescriptionScreen open={modalVisable} />
         </Pressable>
       )}/>
     </ScrollView>
@@ -63,21 +41,11 @@ function FoodScreen() {
 }
 
 const Tab = createMaterialTopTabNavigator();
-const Stack = createNativeStackNavigator();
-
-function MenuScreenStack() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name='Drinks' component={DrinksScreen} options={{ headerShown: false }}/>
-      <Stack.Screen name='ItemDescription' component={ItemDescriptionScreen} />
-    </Stack.Navigator>
-  );
-}
 
 export default function MenuScreen() {
   return (
     <Tab.Navigator>
-      <Tab.Screen name='Coffee' component={MenuScreenStack} />
+      <Tab.Screen name='Coffee' component={DrinksScreen} />
       <Tab.Screen name='Food' component={FoodScreen} />
     </Tab.Navigator>
     );

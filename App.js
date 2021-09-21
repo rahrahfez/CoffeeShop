@@ -4,27 +4,12 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
-import Home from './screens/home';
-import MenuScreen from './screens/menu';
-import ShoppingCart from './screens/shoppingCart';
+import HomeScreen from './src/routes/homeScreen';
+import MenuScreen from './src/screens/menu';
+import ShoppingCartScreen from './src/routes/shoppingCartScreen';
+import { cart } from './src/screens/shoppingCart';
 
 const Tab = createBottomTabNavigator();
-
-function HomeScreen() {
-  return (
-    <View style={styles.container}>
-      <Home />
-    </View>
-  );
-}
-
-function ShoppingCartScreen() {
-  return (
-    <View style={styles.container}>
-      <ShoppingCart />
-    </View>
-  );
-}
 
 export default function App() {
   return (
@@ -53,17 +38,8 @@ export default function App() {
       >
         <Tab.Screen name='Home' component={HomeScreen} options={{ headerShown: false }}/>
         <Tab.Screen name='Menu' component={MenuScreen} />
-        <Tab.Screen name="Cart" component={ShoppingCartScreen} options={{ tabBarBadge: 1 }} />
+        <Tab.Screen name="Cart" component={ShoppingCartScreen} options={{ tabBarBadge: cart.length }} />
       </Tab.Navigator>
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
