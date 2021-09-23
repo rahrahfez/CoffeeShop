@@ -1,13 +1,13 @@
 import React from 'react';
 import { View } from 'react-native';
 
-import ShoppingCart from '../screens/shoppingCart';
+import Home from './home';
 import { globalStyles } from '../shared/globalStyles';
 
-export default function ShoppingCartScreen() {
+export default function HomeScreen() {
   return (
     <View style={globalStyles.container}>
-      <ShoppingCart />
+      <Home />
     </View>
   );
 }
