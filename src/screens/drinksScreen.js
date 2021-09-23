@@ -7,7 +7,6 @@ import ItemDescriptionsModal from '../components/itemDescriptionsModal';
 
 export default function DrinksScreen() {
   const [modalVisable, setModalVisable] = useState(false);
-
   return (
     <ScrollView>
       <View style={{flexDirection: 'row'}}>
@@ -21,10 +20,13 @@ export default function DrinksScreen() {
           <Pressable 
             key={item.id}
             style={globalStyles.card} 
-            onPress={() => setModalVisable(true)}>
+            onPress={() => {
+              setModalVisable(!modalVisable)
+              }
+            }>
           <Image source={item.img_thumbnail} style={styles.drinkImage}/> 
           <Text style={styles.drinkLabel}>{item.flavor}</Text>
-            <ItemDescriptionsModal open={modalVisable} />
+            <ItemDescriptionsModal handleOpen={modalVisable} handleClose={() => setModalVisable(!modalVisable)}/>
         </Pressable>
       )}/>
     </ScrollView>
