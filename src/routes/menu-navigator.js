@@ -1,7 +1,8 @@
 import React from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
-import DrinksScreen from '../screens/menu';
+import DrinksScreen from '../screens/drinksScreen';
+import FoodScreen from '../screens/foodScreen';
 
 const Tab = createMaterialTopTabNavigator();
 

@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
-import HomeScreen from './src/routes/homeScreen';
-import MenuScreen from './src/screens/menu';
-import ShoppingCartScreen from './src/routes/shoppingCartScreen';
-import { cart } from './src/screens/shoppingCart';
+import HomeScreen from '../screens/homeScreen';
+import MenuScreen from './menu-navigator';
+import ShoppingCartScreen from '../screens/shoppingCartScreen';
+import { cart } from '../shared/shoppingCart';
 
 function showBadgeNumber() {
   const [badgeVisible, setBagdgeVisible] = useState(false);
@@ -20,8 +20,6 @@ function showBadgeNumber() {
 }
 
 export default function BottomNavigator() {
-  
-
   const Tab = createBottomTabNavigator();
 
   return (
@@ -49,7 +47,7 @@ export default function BottomNavigator() {
     >
       <Tab.Screen name='Home' component={HomeScreen} options={{ headerShown: false }}/>
       <Tab.Screen name='Menu' component={MenuScreen} />
-      <Tab.Screen name="Cart" component={ShoppingCartScreen} options={{ tabBarBadge: showBadgeNumber() }} />
+      <Tab.Screen name="Cart" component={ShoppingCartScreen} options={{ tabBarBadge: cart.length }} />
     </Tab.Navigator>
   )
 }

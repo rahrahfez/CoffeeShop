@@ -3,10 +3,10 @@ import { View, Text } from 'react-native';
 
 import { globalStyles } from '../shared/globalStyles';
 
-export default function ShoppingCartScreen() {
+export default function FoodScreen() {
   return (
     <View style={globalStyles.container}>
-      <Text>Shopping Cart</Text>
+      <Text>Food</Text>
     </View>
-  );
+  )
 }

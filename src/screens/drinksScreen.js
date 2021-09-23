@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ScrollView, View, Text, FlatList, Pressable, Image, StyleSheet } from 'react-native';
 
 import { globalStyles } from '../shared/globalStyles';
-import ItemDescriptionScreen from './itemDescription';
+import { dalgona } from '../shared/menuItems';
+import ItemDescriptionsModal from '../components/itemDescriptionsModal';
 
 export default function DrinksScreen() {
   const [modalVisable, setModalVisable] = useState(false);
@@ -23,7 +24,7 @@ export default function DrinksScreen() {
             onPress={() => setModalVisable(true)}>
           <Image source={item.img_thumbnail} style={styles.drinkImage}/> 
           <Text style={styles.drinkLabel}>{item.flavor}</Text>
-            <ItemDescriptionScreen open={modalVisable} />
+            <ItemDescriptionsModal open={modalVisable} />
         </Pressable>
       )}/>
     </ScrollView>

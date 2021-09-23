@@ -3,7 +3,7 @@ import { View, Text, Modal, Pressable } from 'react-native';
 
 import { globalStyles } from '../shared/globalStyles';
 
-export default function ItemDescriptionScreen({ open }) {
+export default function ItemDescriptionsModal({ open }) {
   const [modalVisable, setModalVisable] = useState(open);
 
   return (
